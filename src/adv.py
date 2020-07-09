@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -39,6 +40,7 @@ room["overlook"].s_to = room["foyer"]
 room["narrow"].w_to = room["foyer"]
 room["narrow"].n_to = room["treasure"]
 room["treasure"].s_to = room["narrow"]
+
 #
 # Main
 #
@@ -60,38 +62,38 @@ player = Player(room["outside"])
 end_game = False
 
 while not end_game:
-    print(player.position.name)
-    print(player.position.description)
-    choice = input("What is your choice: ")
+    print(player.current_room.name)
+    print(player.current_room.description)
+    choice = input("What is your choice: ").split()
 
-    if choice == "q":
+    if choice[0] == "q":
         end_game = True
 
-    elif choice == "n":
-        location = player.position.n_to
+    elif choice[0] == "n":
+        location = player.current_room.n_to
         if location:
-            player.position = location
+            player.current_room = location
         else:
             print("There is no way north")
 
-    elif choice == "e":
-        location = player.position.e_to
+    elif choice[0] == "e":
+        location = player.current_room.e_to
         if location:
-            player.position = location
+            player.current_room = location
         else:
             print("There is no way east")
 
-    elif choice == "s":
-        location = player.position.s_to
+    elif choice[0] == "s":
+        location = player.current_room.s_to
         if location:
-            player.position = location
+            player.current_room = location
         else:
             print("There is no way south")
 
-    elif choice == "w":
-        location = player.position.w_to
+    elif choice[0] == "w":
+        location = player.current_room.w_to
         if location:
-            player.position = location
+            player.current_room = location
         else:
             print("There is no way west")
 
