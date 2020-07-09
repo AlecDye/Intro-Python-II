@@ -2,7 +2,11 @@
 # currently.
 
 
+# Variable to hold current location?
 class Player:
-    def __init__(self, room):
-        self.room = room
+    def __init__(self, position):
+        self.position = position
+
+    def __str__(self):
+        return str(self.position)
 
